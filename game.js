@@ -37,6 +37,7 @@ function playRound(playerSelection, computerSelection) {
   return { result: "lose", message: `I win this round! ${computer} beats ${player}. Mwahaha!` };
 }
 
+
 /* ---------- Helpers ---------- */
 
 function log(text) {
@@ -123,16 +124,31 @@ function game() {
 
 /* ---------- Start ---------- */
 
+// function start() {
+//   showInstructions();
+//   do {
+//     if (!confirm("Are you ready to face the Evil AI?\n\nOK = Start the battle\nCancel = Run away")) {
+//       log("You ran away. Reload the page to play.");
+//       return;
+//     }
+//     game();
+//   } while (confirm("Want a rematch against the Evil AI?"));
+//   log("Thanks for playing! Reload the page to play again.");
+// }
 function start() {
   showInstructions();
-  do {
-    if (!confirm("Are you ready to face the Evil AI?\n\nOK = Start the battle\nCancel = Run away")) {
-      log("You ran away. Reload the page to play.");
-      return;
-    }
-    game();
-  } while (confirm("Want a rematch against the Evil AI?"));
-  log("Thanks for playing! Reload the page to play again.");
-}
 
+  if (!confirm("Are you ready to face the Evil AI?\n\nOK = Start the battle\nCancel = Run away")) {
+    log("You ran away. Reload the page to play.");
+    return;
+  } else {
+    game();
+
+    if (confirm("Want a rematch against the Evil AI?")) {
+      start();
+    } else {
+      log("Thanks for playing! Reload the page to play again.");
+    }
+  }
+}
 start();
